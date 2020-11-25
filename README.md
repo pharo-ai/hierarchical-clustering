@@ -1,2 +1,2 @@
-# MLHierachicalClustering
+# MLHierarchicalClustering
 Hierarchical Clustering algorithms for Pharo
