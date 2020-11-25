@@ -18,7 +18,8 @@ BaselineOfMLHierachicalClustering >> baseline: spec [
 				with: [ spec repository: 'github://pharo-ai/MLLinearAlgebra/src' ].
 
 			spec 
-				package: 'MLHierarchicalClustering'	 with: [ spec requires: #('CollectionExtensions' 'MLLinearAlgebra') ].
+				package: 'MLHierarchicalClustering'	 		with: [ spec requires: #('CollectionExtensions' 'MLLinearAlgebra') ];
+				package: 'MLHierarchicalClustering-Tests' 	with: [ spec requires: #(MLHierarchicalClustering) ].
 			spec 
 				group: 'Core' 						with: #('MLHierarchicalClustering');
 				group: 'Tests' 						with: #('MLHierarchicalClustering' 'MLHierarchicalClustering-Tests');
