@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfMLHierachicalClustering,
+	#name : #BaselineOfMLHierarchicalClustering,
 	#superclass : #BaselineOf,
 	#category : #BaselineOfMLHierarchicalClustering
 }
 
 { #category : #baselines }
-BaselineOfMLHierachicalClustering >> baseline: spec [
+BaselineOfMLHierarchicalClustering >> baseline: spec [
   <baseline>
 	spec
 		for: #(common)
