@@ -25,7 +25,7 @@ MLDendrogramTest >> setUp [
 { #category : #test }
 MLDendrogramTest >> testAllLeaves [
 	self assert: dendrogram elements size equals: 7.
-	self assert: (dendrogram elements equalsTo: #(#a #b #c #d #e #f #g))
+	self assert: dendrogram elements equals: #(#a #b #c #d #e #f #g)
 ]
 
 { #category : #test }

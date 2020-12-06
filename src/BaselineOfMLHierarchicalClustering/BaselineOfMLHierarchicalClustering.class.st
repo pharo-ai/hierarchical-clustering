@@ -14,11 +14,6 @@ BaselineOfMLHierarchicalClustering >> baseline: spec [
 				baseline: 'CollectionExtensions'
 				with: [ spec repository: 'github://pharo-contributions/CollectionExtensions:v1.x.x/src' ];
 
-				baseline: 'PolyMath'
-				with: [ spec 
-						repository: 'github://PolyMathOrg/PolyMath:master/src';
-						loads: #( 'Core') ];
-				
 				baseline: 'MLLinearAlgebra'
 				with: [ spec repository: 'github://pharo-ai/MLLinearAlgebra:main/src' ].
 
