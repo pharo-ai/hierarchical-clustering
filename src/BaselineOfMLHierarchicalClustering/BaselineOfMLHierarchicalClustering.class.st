@@ -19,7 +19,7 @@ BaselineOfMLHierarchicalClustering >> baseline: spec [
 
 			spec 
 				package: 'MLHierarchicalClustering'	 		with: [ spec requires: #('CollectionExtensions' 'MLLinearAlgebra') ];
-				package: 'MLHierarchicalClustering-Tests' 	with: [ spec requires: #('MLHierarchicalClustering' 'PolyMath') ].
+				package: 'MLHierarchicalClustering-Tests' 	with: [ spec requires: #('MLHierarchicalClustering') ].
 			spec 
 				group: 'Core' 						with: #('MLHierarchicalClustering');
 				group: 'Tests' 						with: #('MLHierarchicalClustering' 'MLHierarchicalClustering-Tests');
