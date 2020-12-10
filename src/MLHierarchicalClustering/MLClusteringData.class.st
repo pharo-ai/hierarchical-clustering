@@ -11,7 +11,7 @@ Class {
 		'foundA0',
 		'foundB0'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Core'
 }
 
 { #category : #'instance creation' }

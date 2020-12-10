@@ -8,7 +8,7 @@ Class {
 		'distanceMatrix',
 		'dendrogram'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Core'
 }
 
 { #category : #examples }

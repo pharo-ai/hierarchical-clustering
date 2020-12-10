@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'elements'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Core'
 }
 
 { #category : #'instance creation' }

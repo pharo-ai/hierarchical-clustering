@@ -8,7 +8,7 @@ Class {
 		'item',
 		'collection'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Core'
 }
 
 { #category : #adding }

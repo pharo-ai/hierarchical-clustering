@@ -9,7 +9,7 @@ Class {
 		'right',
 		'threshold'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Dendrogram'
 }
 
 { #category : #'instance creation' }

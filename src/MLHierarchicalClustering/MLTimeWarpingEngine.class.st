@@ -9,7 +9,7 @@ Class {
 		'vectorB',
 		'distanceBlock'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Core'
 }
 
 { #category : #accessing }

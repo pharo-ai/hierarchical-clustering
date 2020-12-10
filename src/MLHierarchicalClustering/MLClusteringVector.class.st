@@ -9,7 +9,7 @@ Class {
 		'min',
 		'found'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Math'
 }
 
 { #category : #accessing }

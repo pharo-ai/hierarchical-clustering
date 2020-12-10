@@ -9,7 +9,7 @@ Class {
 		'items',
 		'dendrogram'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Math'
 }
 
 { #category : #constants }

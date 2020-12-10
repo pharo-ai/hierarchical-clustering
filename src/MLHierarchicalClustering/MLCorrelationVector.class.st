@@ -5,7 +5,7 @@ Class {
 	#name : #MLCorrelationVector,
 	#superclass : #MLVector,
 	#type : #bytes,
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Math'
 }
 
 { #category : #'instance creation' }

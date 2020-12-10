@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'parent'
 	],
-	#category : #MLHierarchicalClustering
+	#category : #'MLHierarchicalClustering-Dendrogram'
 }
 
 { #category : #'instance creation' }
