@@ -5,10 +5,30 @@ Class {
 	#name : #MLDendrogram,
 	#superclass : #Collection,
 	#instVars : [
-		'parent'
+		'parent',
+		'depth'
 	],
 	#category : #'MLHierarchicalClustering-Dendrogram'
 }
+
+{ #category : #examples }
+MLDendrogram class >> example1 [
+	<example>
+	
+	| input clusty |
+
+	input := { 
+		0.67000151 	@ -2.4288232  .
+		-0.97060792 	@ -0.91638171 . 
+		1.20387858 	@ -0.03940283 .
+		-1.98986617 	@  0.36116279 .
+		-2.2372045  	@ -0.09565332 . 
+		0.81210612 	@ -2.42210087 }.
+	clusty := MLClusterEngine with: input.
+	clusty hierarchicalClusteringUsing: #averageLinkage.
+	clusty dendrogram plot4
+
+]
 
 { #category : #'instance creation' }
 MLDendrogram class >> with: anElement [
@@ -47,6 +67,12 @@ MLDendrogram >> breakInto: numberOfClusters [
 			candidates size >= numberOfClusters ifTrue: [^candidates asArray]]
 ]
 
+{ #category : #accessing }
+MLDendrogram >> depthFactor [
+
+	^ 20
+]
+
 { #category : #seriation }
 MLDendrogram >> dist: dendrogram [
 	
@@ -80,6 +106,12 @@ MLDendrogram >> elementsDo: aBlock [
 ]
 
 { #category : #accessing }
+MLDendrogram >> heightFactor [
+
+	^ 3
+]
+
+{ #category : #accessing }
 MLDendrogram >> index [
 	
 	^self isRoot
@@ -91,9 +123,21 @@ MLDendrogram >> index [
 ]
 
 { #category : #testing }
+MLDendrogram >> isLeaf [
+
+	^ false
+]
+
+{ #category : #testing }
 MLDendrogram >> isLeft [
 	
 	^self parent left == self
+]
+
+{ #category : #testing }
+MLDendrogram >> isNode [
+
+	^ false
 ]
 
 { #category : #testing }

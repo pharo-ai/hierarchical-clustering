@@ -68,6 +68,52 @@ MLClusterEngineTest >> testClustering300Elements [
 	^clusters
 ]
 
+{ #category : #test }
+MLClusterEngineTest >> testDendrogram [
+
+	| input clusty expected |
+	
+	input := 	#(3 11 2 15 1 12).
+	expected := MLDendrogramNode
+		with: (MLDendrogramNode
+			with: (MLDendrogramNode
+				with: (MLDendrogramLeaf with: 3)
+				with: (MLDendrogramLeaf with: 2)
+				at: 1)
+			with: (MLDendrogramLeaf with: 1)
+			at: 1.5) 
+		with: (MLDendrogramNode
+			with: (MLDendrogramNode
+				with: (MLDendrogramLeaf with: 11)
+				with: (MLDendrogramLeaf with: 12)
+				at: 1)
+			with: (MLDendrogramLeaf with: 15)
+			at: 3.5) 
+		at: 10.666666666666664.
+	
+	clusty := MLClusterEngine with: input.
+	
+	self assert: clusty dendrogram equals: expected
+]
+
+{ #category : #test }
+MLClusterEngineTest >> testDistanceMatrix [
+
+	| input clusty |
+	input := 	#(3 11 2 15 1 12).
+	clusty := MLClusterEngine new distanceMatrix: (MLDistanceSquare on: input).
+	self assert: (clusty distanceMatrix isKindOf: MLDistanceSquare)
+]
+
+{ #category : #test }
+MLClusterEngineTest >> testItems [
+
+	| input clusty |
+	input := 	#(3 11 2 15 1 12).
+	clusty := MLClusterEngine new distanceMatrix: (MLDistanceSquare on: input).
+	self assert: clusty items equals: input.
+]
+
 { #category : #testing }
 MLClusterEngineTest >> testSeriationEngine [
 	

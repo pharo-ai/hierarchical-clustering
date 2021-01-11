@@ -14,6 +14,7 @@ Class {
 
 { #category : #'instance creation' }
 MLDendrogramNode class >> with: left with: right at: threshold [
+
 	^ self new
 		left: left;
 		right: right;
@@ -21,11 +22,36 @@ MLDendrogramNode class >> with: left with: right at: threshold [
 		yourself
 ]
 
+{ #category : #comparing }
+MLDendrogramNode >> = aMLDendrogram [
+
+	self == aMLDendrogram
+		ifTrue: [ ^ true ].
+	self class = aMLDendrogram class
+		ifFalse: [ ^ false ].
+	^ self left = aMLDendrogram left
+		and: [ self right = aMLDendrogram right
+		 and: [ self threshold = aMLDendrogram threshold ] ]
+]
+
 { #category : #enumerating }
 MLDendrogramNode >> elementsDo: aBlock [
 	
 	left elementsDo: aBlock.
 	right elementsDo: aBlock
+]
+
+{ #category : #comparing }
+MLDendrogramNode >> hash [ 
+	"#hash is implemented, because #= is implemented"
+
+	^ self left hash bitXor: (self right hash bitXor: self threshold hash)
+]
+
+{ #category : #testing }
+MLDendrogramNode >> isNode [
+
+	^ true
 ]
 
 { #category : #enumerating }

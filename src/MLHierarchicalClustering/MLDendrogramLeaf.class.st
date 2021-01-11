@@ -17,6 +17,16 @@ MLDendrogramLeaf class >> with: anElement [
 		yourself
 ]
 
+{ #category : #comparing }
+MLDendrogramLeaf >> = aMLDendrogram [
+
+	self == aMLDendrogram
+		ifTrue: [ ^ true ].
+	self class = aMLDendrogram class
+		ifFalse: [ ^ false ].
+	^ self element = aMLDendrogram element
+]
+
 { #category : #accessing }
 MLDendrogramLeaf >> element [
 	
@@ -32,6 +42,18 @@ MLDendrogramLeaf >> element: anObject [
 MLDendrogramLeaf >> elementsDo: aBlock [
 	
 	aBlock value: element
+]
+
+{ #category : #comparing }
+MLDendrogramLeaf >> hash [ 
+
+	^ self element hash
+]
+
+{ #category : #testing }
+MLDendrogramLeaf >> isLeaf [
+
+	^ true
 ]
 
 { #category : #enumerating }

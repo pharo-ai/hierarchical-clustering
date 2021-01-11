@@ -19,6 +19,16 @@ MLDistanceSquare class >> defaultDistanceBlock [
 ]
 
 { #category : #'instance creation' }
+MLDistanceSquare class >> from1D: aCollection [
+	" Answer a new instance of the receiver with partial matrix from oneDimensionCollection. Assume distances already calculated in oneDimensionCollection "
+	
+	^ self basicNew
+		initializeFrom1D: aCollection;
+		yourself.
+
+]
+
+{ #category : #'instance creation' }
 MLDistanceSquare class >> on: items [
 	
 	^self
@@ -47,6 +57,12 @@ MLDistanceSquare class >> on: items using: distanceBlock [
 MLDistanceSquare >> at: row and: column put: aNumber [
 	
 	^self noModificationError
+]
+
+{ #category : #accessing }
+MLDistanceSquare >> at: row at: column put: aNumber [
+	
+	(partialColumns at: row) at: column put: aNumber
 ]
 
 { #category : #private }
@@ -113,10 +129,54 @@ MLDistanceSquare >> initialize: someItems using: aDistanceBlock [
 						value: (items at: row)]]
 ]
 
+{ #category : #'initialize-release' }
+MLDistanceSquare >> initializeFrom1D: aCollection [
+	" Private - Assume aCollection to be 1D collection. Read items from it and set the receiver's lower triangular items ."
+	
+	| dimension colSize |
+	colSize := aCollection size.
+	items := aCollection.
+	dimension := (colSize findNK pairsCollect: [ :n :k | n ]) min.
+	dimension * (dimension - 1)	~= (colSize * 2)
+			ifTrue: [ self error: 'Collection size must be compatible with binomial coefficient (n take: 2), for n >= 2' ].
+	self partialColumns: (Array new: dimension).
+	1
+		to: dimension
+		do: [ :index | 
+			self partialColumns
+				at: index
+				put: (self newVectorOfSize: index itemsFrom: aCollection dimensions: dimension) ]
+
+
+
+]
+
 { #category : #accessing }
 MLDistanceSquare >> items [
 	
 	^items
+]
+
+{ #category : #accessing }
+MLDistanceSquare >> items: anObject [
+	items := anObject
+]
+
+{ #category : #private }
+MLDistanceSquare >> newVectorOfSize: i itemsFrom: aCollection dimensions: n [
+	" Private - Answer a new vector of i size with items from aCollection, read as condensed indices.
+	To get each element (from aCollection) in the new vector, the number of elements to the left and above is obtained for each position, depending of the dimensions of the whole receiver (a squareform matrix) and the requested vector size (each row in the current iteration) "
+
+	| vector |
+	
+	vector := self vectorSpecies new: i.
+	1 
+		to: i
+		do: [ : j | 
+			j = i
+				ifTrue: [ vector at: i put: 0 ]
+				ifFalse: [ vector at: j put: (aCollection at: ((n * (j - 1)) - (j - 1 * j / 2) + (i - j))) ] ].
+	^ vector
 ]
 
 { #category : #actions }

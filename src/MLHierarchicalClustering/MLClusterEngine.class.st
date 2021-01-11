@@ -13,18 +13,22 @@ Class {
 
 { #category : #examples }
 MLClusterEngine class >> numbers: aCollection [
-	"MalClusterEngine numbers: #(1 2 9 0 7 2 4 3)"
+	" AIClusterEngine numbers: #(1 2 9 0 7 2 4 3) "
 
 	^ (self with: aCollection using: [ :a :b | (a - b) * (a - b) ]) averageLinkage elements
 ]
 
 { #category : #'instance creation' }
 MLClusterEngine class >> with: aCollection [
+	" Answer a new instance of the receiver wrapping aCollection as the receiver's distance matrix "
+
 	^ self withDistanceMatrix: (MLDistanceSquare on: aCollection)
 ]
 
 { #category : #'instance creation' }
 MLClusterEngine class >> with: aCollection using: aDistanceBlock [
+	" Answer a new engine using aDistanceBlock containing the code to calculate distance between elements in aCollection "
+
 	^ self withDistanceMatrix: (MLDistanceSquare on: aCollection using: aDistanceBlock)
 ]
 

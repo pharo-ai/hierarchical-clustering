@@ -17,7 +17,7 @@ Class {
 { #category : #'instance creation' }
 MLClusteringData class >> onDistanceSquare: distanceSquare [
 	
-	^(self basicNew)
+	^ self basicNew
 		initialize: distanceSquare;
 		yourself
 ]
