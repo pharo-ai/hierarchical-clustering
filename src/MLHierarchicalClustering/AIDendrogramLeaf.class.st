@@ -2,8 +2,8 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLDendrogramLeaf,
-	#superclass : #MLDendrogram,
+	#name : #AIDendrogramLeaf,
+	#superclass : #AIDendrogram,
 	#instVars : [
 		'element'
 	],
@@ -11,14 +11,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-MLDendrogramLeaf class >> with: anElement [
+AIDendrogramLeaf class >> with: anElement [
 	^ self new
 		element: anElement;
 		yourself
 ]
 
 { #category : #comparing }
-MLDendrogramLeaf >> = aMLDendrogram [
+AIDendrogramLeaf >> = aMLDendrogram [
 
 	self == aMLDendrogram
 		ifTrue: [ ^ true ].
@@ -28,81 +28,81 @@ MLDendrogramLeaf >> = aMLDendrogram [
 ]
 
 { #category : #accessing }
-MLDendrogramLeaf >> element [
+AIDendrogramLeaf >> element [
 	
 	^element
 ]
 
 { #category : #accessing }
-MLDendrogramLeaf >> element: anObject [
+AIDendrogramLeaf >> element: anObject [
 	element := anObject
 ]
 
 { #category : #enumerating }
-MLDendrogramLeaf >> elementsDo: aBlock [
+AIDendrogramLeaf >> elementsDo: aBlock [
 	
 	aBlock value: element
 ]
 
 { #category : #comparing }
-MLDendrogramLeaf >> hash [ 
+AIDendrogramLeaf >> hash [ 
 
 	^ self element hash
 ]
 
 { #category : #testing }
-MLDendrogramLeaf >> isLeaf [
+AIDendrogramLeaf >> isLeaf [
 
 	^ true
 ]
 
 { #category : #enumerating }
-MLDendrogramLeaf >> leavesDo: aBlock [
+AIDendrogramLeaf >> leavesDo: aBlock [
 	
 	aBlock value: self
 ]
 
 { #category : #accessing }
-MLDendrogramLeaf >> left [
+AIDendrogramLeaf >> left [
 	
 	^self
 ]
 
 { #category : #enumerating }
-MLDendrogramLeaf >> nodesDo: aBlock [
+AIDendrogramLeaf >> nodesDo: aBlock [
 	"does nothing"
 	
 	
 ]
 
 { #category : #seriation }
-MLDendrogramLeaf >> orderLeafs [
+AIDendrogramLeaf >> orderLeafs [
 	"do nothing"
 	
 	
 ]
 
 { #category : #accessing }
-MLDendrogramLeaf >> right [
+AIDendrogramLeaf >> right [
 	
 	^self
 ]
 
 { #category : #accessing }
-MLDendrogramLeaf >> size [
+AIDendrogramLeaf >> size [
 	
 	^1
 ]
 
 { #category : #seriation }
-MLDendrogramLeaf >> swap [
+AIDendrogramLeaf >> swap [
 	"does nothing"
 	
 	
 ]
 
 { #category : #accessing }
-MLDendrogramLeaf >> threshold [
+AIDendrogramLeaf >> threshold [
 	
 	^ Number zero
 ]

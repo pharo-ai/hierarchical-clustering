@@ -2,20 +2,20 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLCorrelationVector,
+	#name : #AICorrelationVector,
 	#superclass : #MLVector,
 	#type : #bytes,
 	#category : #'MLHierarchicalClustering-Math'
 }
 
 { #category : #'instance creation' }
-MLCorrelationVector class >> new: size [
+AICorrelationVector class >> new: size [
 	
 	^self basicNew: size << 1
 ]
 
 { #category : #accessing }
-MLCorrelationVector >> at: anIndex [
+AICorrelationVector >> at: anIndex [
 	"Answer a number between 1.0 and -1.0 at the given index.
 	The numbers are internally stored as 16-bit integer; and nil as zero."
 	
@@ -27,7 +27,7 @@ MLCorrelationVector >> at: anIndex [
 ]
 
 { #category : #accessing }
-MLCorrelationVector >> at: anIndex put: aNumber [
+AICorrelationVector >> at: anIndex put: aNumber [
 	"Store a number between 1.0 and -1.0 at the given index.
 	The number is stores as 16-bit integer; nil is stored as zero."
 	
@@ -41,13 +41,13 @@ MLCorrelationVector >> at: anIndex put: aNumber [
 ]
 
 { #category : #private }
-MLCorrelationVector >> defaultElement [
+AICorrelationVector >> defaultElement [
 	
 	^nil
 ]
 
 { #category : #'As yet unclassified' }
-MLCorrelationVector >> min [
+AICorrelationVector >> min [
 	
 	^(self reject: #isNil)
 		inject: MLUnlimited positive
@@ -55,20 +55,20 @@ MLCorrelationVector >> min [
 ]
 
 { #category : #accessing }
-MLCorrelationVector >> size [
+AICorrelationVector >> size [
 	
 	^self basicSize >> 1
 ]
 
 { #category : #private }
-MLCorrelationVector >> unsignedShortAt: byteIndex [
+AICorrelationVector >> unsignedShortAt: byteIndex [
 	
 	<primitive: 540>
 	^self primitiveFailed
 ]
 
 { #category : #private }
-MLCorrelationVector >> unsignedShortAt: byteIndex put: anUnsignedShort [
+AICorrelationVector >> unsignedShortAt: byteIndex put: anUnsignedShort [
 	
 	<primitive: 541>
 	^self primitiveFailed

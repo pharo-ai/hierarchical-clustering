@@ -2,7 +2,7 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLDendrogram,
+	#name : #AIDendrogram,
 	#superclass : #Collection,
 	#instVars : [
 		'parent',
@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #examples }
-MLDendrogram class >> example1 [
+AIDendrogram class >> example1 [
 	<example>
 	
 	| input clusty |
@@ -24,26 +24,26 @@ MLDendrogram class >> example1 [
 		-1.98986617 	@  0.36116279 .
 		-2.2372045  	@ -0.09565332 . 
 		0.81210612 	@ -2.42210087 }.
-	clusty := MLClusterEngine with: input.
+	clusty := AIClusterEngine with: input.
 	clusty hierarchicalClusteringUsing: #averageLinkage.
 	clusty dendrogram plot4
 
 ]
 
 { #category : #'instance creation' }
-MLDendrogram class >> with: anElement [
+AIDendrogram class >> with: anElement [
 	
-	^MLDendrogramLeaf with: anElement
+	^AIDendrogramLeaf with: anElement
 ]
 
 { #category : #adding }
-MLDendrogram >> add: newObject [
+AIDendrogram >> add: newObject [
 	
 	self shouldNotImplement
 ]
 
 { #category : #'break into clusters' }
-MLDendrogram >> breakAtThreshold: aNumber [
+AIDendrogram >> breakAtThreshold: aNumber [
 	
 	| candidates |
 	candidates := (self nodes select: [:each | each threshold < aNumber])
@@ -52,7 +52,7 @@ MLDendrogram >> breakAtThreshold: aNumber [
 ]
 
 { #category : #'break into clusters' }
-MLDendrogram >> breakInto: numberOfClusters [
+AIDendrogram >> breakInto: numberOfClusters [
 	
 	| all candidates |
 	"all := self nodes reverseSort: #threshold."
@@ -68,13 +68,13 @@ MLDendrogram >> breakInto: numberOfClusters [
 ]
 
 { #category : #accessing }
-MLDendrogram >> depthFactor [
+AIDendrogram >> depthFactor [
 
 	^ 20
 ]
 
 { #category : #seriation }
-MLDendrogram >> dist: dendrogram [
+AIDendrogram >> dist: dendrogram [
 	
 	| sum |
 	sum := MLAccumulator sum.
@@ -85,13 +85,13 @@ MLDendrogram >> dist: dendrogram [
 ]
 
 { #category : #enumerating }
-MLDendrogram >> do: aBlock [
+AIDendrogram >> do: aBlock [
 	
 	self elementsDo: aBlock
 ]
 
 { #category : #accessing }
-MLDendrogram >> elements [
+AIDendrogram >> elements [
 	
 	| stream |
 	stream := Array new writeStream.
@@ -100,19 +100,19 @@ MLDendrogram >> elements [
 ]
 
 { #category : #enumerating }
-MLDendrogram >> elementsDo: aBlock [
+AIDendrogram >> elementsDo: aBlock [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #accessing }
-MLDendrogram >> heightFactor [
+AIDendrogram >> heightFactor [
 
 	^ 3
 ]
 
 { #category : #accessing }
-MLDendrogram >> index [
+AIDendrogram >> index [
 	
 	^self isRoot
 		ifTrue: [1]
@@ -123,36 +123,36 @@ MLDendrogram >> index [
 ]
 
 { #category : #testing }
-MLDendrogram >> isLeaf [
+AIDendrogram >> isLeaf [
 
 	^ false
 ]
 
 { #category : #testing }
-MLDendrogram >> isLeft [
+AIDendrogram >> isLeft [
 	
 	^self parent left == self
 ]
 
 { #category : #testing }
-MLDendrogram >> isNode [
+AIDendrogram >> isNode [
 
 	^ false
 ]
 
 { #category : #testing }
-MLDendrogram >> isRight [
+AIDendrogram >> isRight [
 	
 	^self parent right == self
 ]
 
 { #category : #testing }
-MLDendrogram >> isRoot [
+AIDendrogram >> isRoot [
 	^ parent isNil
 ]
 
 { #category : #accessing }
-MLDendrogram >> leaves [
+AIDendrogram >> leaves [
 	
 	| stream |
 	stream := Array new writeStream.
@@ -161,25 +161,25 @@ MLDendrogram >> leaves [
 ]
 
 { #category : #enumerating }
-MLDendrogram >> leavesDo: aBlock [
+AIDendrogram >> leavesDo: aBlock [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #accessing }
-MLDendrogram >> left [
+AIDendrogram >> left [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #'instance creation' }
-MLDendrogram >> merge: dendrogram at: threshold [
+AIDendrogram >> merge: dendrogram at: threshold [
 	
-	^MLDendrogramNode with: self with: dendrogram at: threshold
+	^AIDendrogramNode with: self with: dendrogram at: threshold
 ]
 
 { #category : #accessing }
-MLDendrogram >> nodes [
+AIDendrogram >> nodes [
 	
 	| stream |
 	stream := Array new writeStream.
@@ -188,60 +188,60 @@ MLDendrogram >> nodes [
 ]
 
 { #category : #enumerating }
-MLDendrogram >> nodesDo: aBlock [
+AIDendrogram >> nodesDo: aBlock [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #seriation }
-MLDendrogram >> orderLeafs [
+AIDendrogram >> orderLeafs [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #accessing }
-MLDendrogram >> parent [
+AIDendrogram >> parent [
 	
 	^parent
 ]
 
 { #category : #accessing }
-MLDendrogram >> parent: anObject [
+AIDendrogram >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : #removing }
-MLDendrogram >> remove: oldObject ifAbsent: anExceptionBlock [
+AIDendrogram >> remove: oldObject ifAbsent: anExceptionBlock [
 	
 	self shouldNotImplement
 ]
 
 { #category : #accessing }
-MLDendrogram >> right [
+AIDendrogram >> right [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #accessing }
-MLDendrogram >> size [
+AIDendrogram >> size [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #private }
-MLDendrogram >> species [
+AIDendrogram >> species [
 	
 	^OrderedCollection
 ]
 
 { #category : #seriation }
-MLDendrogram >> swap [
+AIDendrogram >> swap [
 	
 	^self subclassResponsibility
 ]
 
 { #category : #accessing }
-MLDendrogram >> threshold [
+AIDendrogram >> threshold [
 	
 	^self subclassResponsibility
 ]

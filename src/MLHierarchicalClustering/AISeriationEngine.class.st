@@ -2,7 +2,7 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLSeriationEngine,
+	#name : #AISeriationEngine,
 	#superclass : #Object,
 	#instVars : [
 		'elements'
@@ -11,13 +11,13 @@ Class {
 }
 
 { #category : #'instance creation' }
-MLSeriationEngine class >> applyOn: elements [
+AISeriationEngine class >> applyOn: elements [
 	
 	^(self with: elements) defaultAlgorithm
 ]
 
 { #category : #'instance creation' }
-MLSeriationEngine class >> with: elements [
+AISeriationEngine class >> with: elements [
 	
 	^(self new)
 		elements: elements;
@@ -25,28 +25,28 @@ MLSeriationEngine class >> with: elements [
 ]
 
 { #category : #algorithm }
-MLSeriationEngine >> defaultAlgorithm [
+AISeriationEngine >> defaultAlgorithm [
 	
 	^self orderDendrogramLeaves
 ]
 
 { #category : #accessing }
-MLSeriationEngine >> elements [
+AISeriationEngine >> elements [
 	
 	^elements
 ]
 
 { #category : #accessing }
-MLSeriationEngine >> elements: anObject [
+AISeriationEngine >> elements: anObject [
 	
 	elements := anObject
 ]
 
 { #category : #algorithm }
-MLSeriationEngine >> orderDendrogramLeaves [
+AISeriationEngine >> orderDendrogramLeaves [
 	
 	| clusty |
-	clusty := MLClusterEngine with: elements.
+	clusty := AIClusterEngine with: elements.
 	clusty hierarchicalClusteringUsing: #averageLinkage.
 	^clusty dendrogram orderLeafs asArray
 ]

@@ -2,7 +2,7 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLTimeWarpingEngine,
+	#name : #AITimeWarpingEngine,
 	#superclass : #Object,
 	#instVars : [
 		'vectorA',
@@ -13,27 +13,27 @@ Class {
 }
 
 { #category : #accessing }
-MLTimeWarpingEngine >> distanceBlock [
+AITimeWarpingEngine >> distanceBlock [
 	
 	^distanceBlock
 ]
 
 { #category : #accessing }
-MLTimeWarpingEngine >> distanceBlock: anObject [
+AITimeWarpingEngine >> distanceBlock: anObject [
 	
 	distanceBlock := anObject
 ]
 
 { #category : #accessing }
-MLTimeWarpingEngine >> getCost [
+AITimeWarpingEngine >> getCost [
 	
 	^self getCostMatrix last
 ]
 
 { #category : #private }
-MLTimeWarpingEngine >> getCostMatrix [
+AITimeWarpingEngine >> getCostMatrix [
 	| cost matrix |
-	matrix := MLDistanceSquare on: vectorA and: vectorB using: self distanceBlock.
+	matrix := AIDistanceSquare on: vectorA and: vectorB using: self distanceBlock.
 	cost := MLArrayMatrix new: matrix dimension.
 	cost at: 1 and: 1 put: (matrix at: 1 and: 1).
 	2 to: cost rowSize do: [ :x | cost at: x and: 1 put: (cost at: x - 1 and: 1) + (matrix at: x and: 1) ].
@@ -50,25 +50,25 @@ MLTimeWarpingEngine >> getCostMatrix [
 ]
 
 { #category : #accessing }
-MLTimeWarpingEngine >> vectorA [
+AITimeWarpingEngine >> vectorA [
 	
 	^vectorA
 ]
 
 { #category : #accessing }
-MLTimeWarpingEngine >> vectorA: anObject [
+AITimeWarpingEngine >> vectorA: anObject [
 	
 	vectorA := anObject
 ]
 
 { #category : #accessing }
-MLTimeWarpingEngine >> vectorB [
+AITimeWarpingEngine >> vectorB [
 	
 	^vectorB
 ]
 
 { #category : #accessing }
-MLTimeWarpingEngine >> vectorB: anObject [
+AITimeWarpingEngine >> vectorB: anObject [
 	
 	vectorB := anObject
 ]

@@ -2,7 +2,7 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLDistanceSquare,
+	#name : #AIDistanceSquare,
 	#superclass : #MLSymetricMatrix,
 	#instVars : [
 		'distanceBlock',
@@ -13,13 +13,13 @@ Class {
 }
 
 { #category : #constants }
-MLDistanceSquare class >> defaultDistanceBlock [
+AIDistanceSquare class >> defaultDistanceBlock [
 	
 	^[:a :b | a dist: b]
 ]
 
 { #category : #'instance creation' }
-MLDistanceSquare class >> from1D: aCollection [
+AIDistanceSquare class >> from1D: aCollection [
 	" Answer a new instance of the receiver with partial matrix from oneDimensionCollection. Assume distances already calculated in oneDimensionCollection "
 	
 	^ self basicNew
@@ -29,7 +29,7 @@ MLDistanceSquare class >> from1D: aCollection [
 ]
 
 { #category : #'instance creation' }
-MLDistanceSquare class >> on: items [
+AIDistanceSquare class >> on: items [
 	
 	^self
 		on: items
@@ -37,7 +37,7 @@ MLDistanceSquare class >> on: items [
 ]
 
 { #category : #'instance creation' }
-MLDistanceSquare class >> on: vectorA and: vectorB using: distanceBlock [
+AIDistanceSquare class >> on: vectorA and: vectorB using: distanceBlock [
 	
 	[vectorA size = vectorB size] assert.
 	^(self new: vectorA size)
@@ -46,7 +46,7 @@ MLDistanceSquare class >> on: vectorA and: vectorB using: distanceBlock [
 ]
 
 { #category : #'instance creation' }
-MLDistanceSquare class >> on: items using: distanceBlock [
+AIDistanceSquare class >> on: items using: distanceBlock [
 	
 	^(self new: items size)
 		initialize: items using: distanceBlock;
@@ -54,19 +54,19 @@ MLDistanceSquare class >> on: items using: distanceBlock [
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> at: row and: column put: aNumber [
+AIDistanceSquare >> at: row and: column put: aNumber [
 	
 	^self noModificationError
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> at: row at: column put: aNumber [
+AIDistanceSquare >> at: row at: column put: aNumber [
 	
 	(partialColumns at: row) at: column put: aNumber
 ]
 
 { #category : #private }
-MLDistanceSquare >> checkInvariant [
+AIDistanceSquare >> checkInvariant [
 	
 	^super checkInvariant
 		and:
@@ -74,31 +74,31 @@ MLDistanceSquare >> checkInvariant [
 ]
 
 { #category : #private }
-MLDistanceSquare >> copyClusteringData [
+AIDistanceSquare >> copyClusteringData [
 	
 	^partialColumns collect: [:each | each copy]
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> dendrogram [
+AIDistanceSquare >> dendrogram [
 	dendrogram ifNil: [ self performSeriation ].
 	^ dendrogram
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> distanceBlock [
+AIDistanceSquare >> distanceBlock [
 	
 	^distanceBlock
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> distanceBlock: anObject [
+AIDistanceSquare >> distanceBlock: anObject [
 	
 	distanceBlock := anObject
 ]
 
 { #category : #'initialize-release' }
-MLDistanceSquare >> initialize: vectorA and: vectorB using: aDistanceBlock [
+AIDistanceSquare >> initialize: vectorA and: vectorB using: aDistanceBlock [
 	
 	items := nil.
 	distanceBlock := aDistanceBlock.
@@ -114,7 +114,7 @@ MLDistanceSquare >> initialize: vectorA and: vectorB using: aDistanceBlock [
 ]
 
 { #category : #'initialize-release' }
-MLDistanceSquare >> initialize: someItems using: aDistanceBlock [
+AIDistanceSquare >> initialize: someItems using: aDistanceBlock [
 	
 	items := someItems.
 	distanceBlock := aDistanceBlock.
@@ -130,7 +130,7 @@ MLDistanceSquare >> initialize: someItems using: aDistanceBlock [
 ]
 
 { #category : #'initialize-release' }
-MLDistanceSquare >> initializeFrom1D: aCollection [
+AIDistanceSquare >> initializeFrom1D: aCollection [
 	" Private - Assume aCollection to be 1D collection. Read items from it and set the receiver's lower triangular items ."
 	
 	| dimension colSize |
@@ -152,18 +152,18 @@ MLDistanceSquare >> initializeFrom1D: aCollection [
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> items [
+AIDistanceSquare >> items [
 	
 	^items
 ]
 
 { #category : #accessing }
-MLDistanceSquare >> items: anObject [
+AIDistanceSquare >> items: anObject [
 	items := anObject
 ]
 
 { #category : #private }
-MLDistanceSquare >> newVectorOfSize: i itemsFrom: aCollection dimensions: n [
+AIDistanceSquare >> newVectorOfSize: i itemsFrom: aCollection dimensions: n [
 	" Private - Answer a new vector of i size with items from aCollection, read as condensed indices.
 	To get each element (from aCollection) in the new vector, the number of elements to the left and above is obtained for each position, depending of the dimensions of the whole receiver (a squareform matrix) and the requested vector size (each row in the current iteration) "
 
@@ -180,15 +180,15 @@ MLDistanceSquare >> newVectorOfSize: i itemsFrom: aCollection dimensions: n [
 ]
 
 { #category : #actions }
-MLDistanceSquare >> performSeriation [
+AIDistanceSquare >> performSeriation [
 	| newOrder |
-	dendrogram := (MLClusterEngine withDistanceMatrix: self) averageLinkage.
+	dendrogram := (AIClusterEngine withDistanceMatrix: self) averageLinkage.
 	newOrder := self dendrogram orderLeafs asArray.
 	self rearrange: newOrder
 ]
 
 { #category : #private }
-MLDistanceSquare >> rearrange: newItems [
+AIDistanceSquare >> rearrange: newItems [
 	
 	| newColumns indices |
 	[items equalsTo: newItems] assert.	"create new column vectors."

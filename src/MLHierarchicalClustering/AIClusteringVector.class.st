@@ -2,7 +2,7 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLClusteringVector,
+	#name : #AIClusteringVector,
 	#superclass : #MLArrayVector,
 	#type : #variable,
 	#instVars : [
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #accessing }
-MLClusteringVector >> at: index put: aNumber [
+AIClusteringVector >> at: index put: aNumber [
 	super at: index put: aNumber.
 	(found isNotNil and: [ found = index or: [ aNumber < min ] ])
 		ifTrue: [ found := nil ].
@@ -21,25 +21,25 @@ MLClusteringVector >> at: index put: aNumber [
 ]
 
 { #category : #accessing }
-MLClusteringVector >> found [
+AIClusteringVector >> found [
 	
 	^found
 ]
 
 { #category : #accessing }
-MLClusteringVector >> min [
+AIClusteringVector >> min [
 	found ifNil: [ self update ].
 	^ min
 ]
 
 { #category : #accessing }
-MLClusteringVector >> unsetAt: index [
+AIClusteringVector >> unsetAt: index [
 	super at: index put: MLUnlimited positive.
 	found = index ifTrue: [ found := nil ]
 ]
 
 { #category : #private }
-MLClusteringVector >> update [
+AIClusteringVector >> update [
 	min := MLUnlimited positive.
 	self
 		doWithIndex: [ :each :ind | 

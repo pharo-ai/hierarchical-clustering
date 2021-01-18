@@ -2,8 +2,8 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLDendrogramNode,
-	#superclass : #MLDendrogram,
+	#name : #AIDendrogramNode,
+	#superclass : #AIDendrogram,
 	#instVars : [
 		'left',
 		'right',
@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-MLDendrogramNode class >> with: left with: right at: threshold [
+AIDendrogramNode class >> with: left with: right at: threshold [
 
 	^ self new
 		left: left;
@@ -23,7 +23,7 @@ MLDendrogramNode class >> with: left with: right at: threshold [
 ]
 
 { #category : #comparing }
-MLDendrogramNode >> = aMLDendrogram [
+AIDendrogramNode >> = aMLDendrogram [
 
 	self == aMLDendrogram
 		ifTrue: [ ^ true ].
@@ -35,46 +35,46 @@ MLDendrogramNode >> = aMLDendrogram [
 ]
 
 { #category : #enumerating }
-MLDendrogramNode >> elementsDo: aBlock [
+AIDendrogramNode >> elementsDo: aBlock [
 	
 	left elementsDo: aBlock.
 	right elementsDo: aBlock
 ]
 
 { #category : #comparing }
-MLDendrogramNode >> hash [ 
+AIDendrogramNode >> hash [ 
 	"#hash is implemented, because #= is implemented"
 
 	^ self left hash bitXor: (self right hash bitXor: self threshold hash)
 ]
 
 { #category : #testing }
-MLDendrogramNode >> isNode [
+AIDendrogramNode >> isNode [
 
 	^ true
 ]
 
 { #category : #enumerating }
-MLDendrogramNode >> leavesDo: aBlock [
+AIDendrogramNode >> leavesDo: aBlock [
 	
 	left leavesDo: aBlock.
 	right leavesDo: aBlock
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> left [
+AIDendrogramNode >> left [
 	
 	^left
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> left: anObject [
+AIDendrogramNode >> left: anObject [
 	left := anObject.
 	anObject parent: self
 ]
 
 { #category : #enumerating }
-MLDendrogramNode >> nodesDo: aBlock [
+AIDendrogramNode >> nodesDo: aBlock [
 	
 	aBlock value: self.
 	left nodesDo: aBlock.
@@ -82,7 +82,7 @@ MLDendrogramNode >> nodesDo: aBlock [
 ]
 
 { #category : #seriation }
-MLDendrogramNode >> orderLeafs [
+AIDendrogramNode >> orderLeafs [
 	
 	| a b c d array |
 	a := self left left.
@@ -105,25 +105,25 @@ MLDendrogramNode >> orderLeafs [
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> right [
+AIDendrogramNode >> right [
 	
 	^right
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> right: anObject [
+AIDendrogramNode >> right: anObject [
 	right := anObject.
 	anObject parent: self
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> size [
+AIDendrogramNode >> size [
 	
 	^left size + right size
 ]
 
 { #category : #seriation }
-MLDendrogramNode >> swap [
+AIDendrogramNode >> swap [
 	
 	| swap |
 	swap := left.
@@ -132,12 +132,12 @@ MLDendrogramNode >> swap [
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> threshold [
+AIDendrogramNode >> threshold [
 	
 	^threshold
 ]
 
 { #category : #accessing }
-MLDendrogramNode >> threshold: anObject [
+AIDendrogramNode >> threshold: anObject [
 	threshold := anObject
 ]

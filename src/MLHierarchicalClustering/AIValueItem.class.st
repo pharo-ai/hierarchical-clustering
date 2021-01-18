@@ -2,31 +2,31 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLValueItem,
+	#name : #AIValueItem,
 	#superclass : #Association,
 	#category : #'MLHierarchicalClustering-Core'
 }
 
 { #category : #'distance functions' }
-MLValueItem >> dist: anItem [
+AIValueItem >> dist: anItem [
 	
 	^self value dist: anItem value
 ]
 
 { #category : #accessing }
-MLValueItem >> item [
+AIValueItem >> item [
 	
 	^self key
 ]
 
 { #category : #accessing }
-MLValueItem >> item: anObject [
+AIValueItem >> item: anObject [
 	
 	^self key: anObject
 ]
 
 { #category : #'distance functions' }
-MLValueItem >> similarity: anItem [
+AIValueItem >> similarity: anItem [
 	
 	^self value similarity: anItem value
 ]

@@ -2,7 +2,7 @@
 Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment.
 "
 Class {
-	#name : #MLClusteringData,
+	#name : #AIClusteringData,
 	#superclass : #MLSymetricMatrix,
 	#instVars : [
 		'indices',
@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-MLClusteringData class >> onDistanceSquare: distanceSquare [
+AIClusteringData class >> onDistanceSquare: distanceSquare [
 	
 	^ self basicNew
 		initialize: distanceSquare;
@@ -23,13 +23,13 @@ MLClusteringData class >> onDistanceSquare: distanceSquare [
 ]
 
 { #category : #private }
-MLClusteringData class >> vectorSpecies [
+AIClusteringData class >> vectorSpecies [
 	
 	^Array
 ]
 
 { #category : #'linkage functions' }
-MLClusteringData >> averageLinkage [
+AIClusteringData >> averageLinkage [
 	
 	| weightA weightB sizeA sizeB |
 	sizeA := (clusters at: foundA0) size "asDouble"asFloat.
@@ -42,7 +42,7 @@ MLClusteringData >> averageLinkage [
 ]
 
 { #category : #'linkage functions' }
-MLClusteringData >> centroid [
+AIClusteringData >> centroid [
 	
 	| weightA weightB sizeA sizeB valueC |
 	sizeA := (clusters at: foundA0) size asFloat.
@@ -57,19 +57,19 @@ MLClusteringData >> centroid [
 ]
 
 { #category : #'linkage functions' }
-MLClusteringData >> completeLinkage [
+AIClusteringData >> completeLinkage [
 	
 	self privateLinkage: [:index0 :valueA :valueB | valueA max: valueB]
 ]
 
 { #category : #accessing }
-MLClusteringData >> dendrogram [
+AIClusteringData >> dendrogram [
 	self assert: indices size = 1.
 	^ clusters at: indices anyOne
 ]
 
 { #category : #private }
-MLClusteringData >> findMinimum [
+AIClusteringData >> findMinimum [
 	"This method is written such that it uses primitives only."
 	
 	| columnVector |
@@ -87,13 +87,13 @@ MLClusteringData >> findMinimum [
 ]
 
 { #category : #'initialize-release' }
-MLClusteringData >> initialize: distanceMatrix [
+AIClusteringData >> initialize: distanceMatrix [
 	
 	partialColumns := distanceMatrix copyClusteringData
-		collect: [:each | MLClusteringVector withAll: each].
+		collect: [:each | AIClusteringVector withAll: each].
 	value := foundA0 := foundB0 := nil.
 	clusters := distanceMatrix items
-		collect: [:item | MLDendrogram with: item].
+		collect: [:item | AIDendrogram with: item].
 	indices := (1 to: partialColumns size) asArray.
 	1
 		to: partialColumns size
@@ -101,19 +101,19 @@ MLClusteringData >> initialize: distanceMatrix [
 ]
 
 { #category : #'initialize-release' }
-MLClusteringData >> initializeRows: m columns: n [
+AIClusteringData >> initializeRows: m columns: n [
 	
 	^self shouldNotImplement
 ]
 
 { #category : #'linkage functions' }
-MLClusteringData >> meanLinkage [
+AIClusteringData >> meanLinkage [
 	
 	self privateLinkage: [:index0 :valueA :valueB | (valueA + valueB) / 2]
 ]
 
 { #category : #clustering }
-MLClusteringData >> performClustering: linkageSelector [
+AIClusteringData >> performClustering: linkageSelector [
 	
 	indices size - 1
 		timesRepeat:
@@ -124,7 +124,7 @@ MLClusteringData >> performClustering: linkageSelector [
 ]
 
 { #category : #private }
-MLClusteringData >> privateLinkage: aBlock [
+AIClusteringData >> privateLinkage: aBlock [
 	
 	indices := indices copyRemoveAtIndex: (indices indexOf: foundB0).
 	indices
@@ -151,13 +151,13 @@ MLClusteringData >> privateLinkage: aBlock [
 ]
 
 { #category : #'linkage functions' }
-MLClusteringData >> singleLinkage [
+AIClusteringData >> singleLinkage [
 	
 	self privateLinkage: [:index0 :valueA :valueB | valueA min: valueB]
 ]
 
 { #category : #private }
-MLClusteringData >> unsetAt: row and: column [
+AIClusteringData >> unsetAt: row and: column [
 	
 	^row < column
 		ifTrue: [(partialColumns at: column) unsetAt: row]
@@ -165,7 +165,7 @@ MLClusteringData >> unsetAt: row and: column [
 ]
 
 { #category : #'linkage functions' }
-MLClusteringData >> wardsMethod [
+AIClusteringData >> wardsMethod [
 	
 	| sizeA sizeB valueC sizeC weightA weightB weightC |
 	sizeA := (clusters at: foundA0) size asFloat.
