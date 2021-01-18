@@ -6,7 +6,7 @@ Hierarchical Clustering algorithms for Pharo
 
 ```smalltalk
 Metacello new
-	baseline: 'MLHierarchicalClustering';
-	repository: 'github://pharo-ai/MLHierarchicalClustering/src';
+	baseline: 'AIHierarchicalClustering';
+	repository: 'github://pharo-ai/hierarchical-clustering/src';
 	load.
 ```
