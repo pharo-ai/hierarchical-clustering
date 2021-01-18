@@ -77,7 +77,7 @@ AIDendrogram >> depthFactor [
 AIDendrogram >> dist: dendrogram [
 	
 	| sum |
-	sum := MLAccumulator sum.
+	sum := AIAccumulator sum.
 	self elements
 		cross: dendrogram elements
 		do: [:a :b | sum add: (a dist: b)].

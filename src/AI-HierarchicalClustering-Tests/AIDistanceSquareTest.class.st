@@ -14,7 +14,7 @@ Class {
 AIDistanceSquareTest >> distanceSquare10Elements [
 	" Answer a distance square matrix of ten elements manually built "
 	
-	^ MLDistanceSquare new
+	^ AIDistanceSquare new
 		items: (1 to: 10) asArray;
 		partialColumns: {
 			(self vectorClass withAll: #(0)) .
@@ -30,7 +30,7 @@ AIDistanceSquareTest >> distanceSquare10Elements [
 AIDistanceSquareTest >> distanceSquare15Elements [
 	" Answer a distance square matrix of 15 elements manually built "
 	
-	^ MLDistanceSquare new
+	^ AIDistanceSquare new
 		items: (1 to: 10) asArray;
 		partialColumns: {
 			(self vectorClass withAll: #(0)) .
@@ -46,7 +46,7 @@ AIDistanceSquareTest >> distanceSquare15Elements [
 { #category : #test }
 AIDistanceSquareTest >> matrixClass [
 	
-	^ MLDistanceSquare
+	^ AIDistanceSquare
 ]
 
 { #category : #test }
@@ -135,5 +135,5 @@ AIDistanceSquareTest >> testNewVectorOfSizeItemsFromDimensions [
 { #category : #test }
 AIDistanceSquareTest >> vectorClass [
 	
-	^ MLArrayVector
+	^ AIArrayVector
 ]

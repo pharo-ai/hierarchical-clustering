@@ -11,7 +11,7 @@ Class {
 AIClusterEngineTest >> testCentroid [
 	| input clusty clusters |
 	input := #(#(1 2 3 5) #(11 12 15) #(21 22 23 25) #(31 32 35) #(41 42 43 45 47)).
-	clusty := MLClusterEngine with: input flatten shuffle.
+	clusty := AIClusterEngine with: input flatten shuffle.
 	clusty hierarchicalClusteringUsing: #centroid.
 	clusters := clusty dendrogram breakInto: 5.
 	self assert: clusters size equals: 5.
@@ -27,7 +27,7 @@ AIClusterEngineTest >> testCentroid [
 AIClusterEngineTest >> testClustering [
 	| input clusty clusters |
 	input := #(#(1 2 3 5) #(11 12 15) #(21 22 23 25) #(31 32 35) #(41 42 43 45 47)).
-	clusty := MLClusterEngine with: input flatten shuffle.
+	clusty := AIClusterEngine with: input flatten shuffle.
 	clusty hierarchicalClusteringUsing: #averageLinkage.
 	clusters := clusty dendrogram breakInto: 5.
 	self assert: clusters size equals: 5.
@@ -43,7 +43,7 @@ AIClusterEngineTest >> testClustering [
 AIClusterEngineTest >> testClustering2 [
 	| input clusty clusters |
 	input := #(#(1 2 3 5) #(11 12 15) #(21 22 23 25) #(31 32 35) #(41 42 43 45 47)).
-	clusty := MLClusterEngine with: input flatten shuffle.
+	clusty := AIClusterEngine with: input flatten shuffle.
 	clusty hierarchicalClusteringUsing: #centroid.
 	clusters := clusty dendrogram breakInto: 5.
 	self assert: clusters size equals: 5.
@@ -60,7 +60,7 @@ AIClusterEngineTest >> testClustering300Elements [
 	
 	| input clusty clusters |
 	input := Random new next: 300.
-	clusty := MLClusterEngine with: input.
+	clusty := AIClusterEngine with: input.
 	1
 		to: 1
 		do: [:n | clusty averageLinkage].
@@ -74,24 +74,24 @@ AIClusterEngineTest >> testDendrogram [
 	| input clusty expected |
 	
 	input := 	#(3 11 2 15 1 12).
-	expected := MLDendrogramNode
-		with: (MLDendrogramNode
-			with: (MLDendrogramNode
-				with: (MLDendrogramLeaf with: 3)
-				with: (MLDendrogramLeaf with: 2)
+	expected := AIDendrogramNode
+		with: (AIDendrogramNode
+			with: (AIDendrogramNode
+				with: (AIDendrogramLeaf with: 3)
+				with: (AIDendrogramLeaf with: 2)
 				at: 1)
-			with: (MLDendrogramLeaf with: 1)
+			with: (AIDendrogramLeaf with: 1)
 			at: 1.5) 
-		with: (MLDendrogramNode
-			with: (MLDendrogramNode
-				with: (MLDendrogramLeaf with: 11)
-				with: (MLDendrogramLeaf with: 12)
+		with: (AIDendrogramNode
+			with: (AIDendrogramNode
+				with: (AIDendrogramLeaf with: 11)
+				with: (AIDendrogramLeaf with: 12)
 				at: 1)
-			with: (MLDendrogramLeaf with: 15)
+			with: (AIDendrogramLeaf with: 15)
 			at: 3.5) 
 		at: 10.666666666666664.
 	
-	clusty := MLClusterEngine with: input.
+	clusty := AIClusterEngine with: input.
 	
 	self assert: clusty dendrogram equals: expected
 ]
@@ -101,8 +101,8 @@ AIClusterEngineTest >> testDistanceMatrix [
 
 	| input clusty |
 	input := 	#(3 11 2 15 1 12).
-	clusty := MLClusterEngine new distanceMatrix: (MLDistanceSquare on: input).
-	self assert: (clusty distanceMatrix isKindOf: MLDistanceSquare)
+	clusty := AIClusterEngine new distanceMatrix: (AIDistanceSquare on: input).
+	self assert: (clusty distanceMatrix isKindOf: AIDistanceSquare)
 ]
 
 { #category : #test }
@@ -110,7 +110,7 @@ AIClusterEngineTest >> testItems [
 
 	| input clusty |
 	input := 	#(3 11 2 15 1 12).
-	clusty := MLClusterEngine new distanceMatrix: (MLDistanceSquare on: input).
+	clusty := AIClusterEngine new distanceMatrix: (AIDistanceSquare on: input).
 	self assert: clusty items equals: input.
 ]
 
@@ -119,7 +119,7 @@ AIClusterEngineTest >> testSeriationEngine [
 	
 	| input output |
 	input := #(1 2 3 5 11 12 15 21 22 23 25 31 32 35 41 42 43 45 47).
-	output := MLSeriationEngine applyOn: input copy asArray shuffle.
+	output := AISeriationEngine applyOn: input copy asArray shuffle.
 	self assert: output = input | (output reverse = input)
 ]
 
@@ -127,7 +127,7 @@ AIClusterEngineTest >> testSeriationEngine [
 AIClusterEngineTest >> testWardsMethod [
 	| input clusty clusters |
 	input := #(#(1 2 3 5) #(11 12 15) #(21 22 23 25) #(31 32 35) #(41 42 43 45 47)).
-	clusty := MLClusterEngine with: input flatten shuffle.
+	clusty := AIClusterEngine with: input flatten shuffle.
 	clusty hierarchicalClusteringUsing: #wardsMethod.
 	clusters := clusty dendrogram breakInto: 5.
 	self assert: clusters size equals: 5.

@@ -14,11 +14,11 @@ Class {
 AIDendrogramTest >> setUp [
 	| ab cd ef abcd efg |
 	super setUp.
-	ab := (MLDendrogram with: #a) merge: (MLDendrogram with: #b) at: 1.
-	cd := (MLDendrogram with: #c) merge: (MLDendrogram with: #d) at: 2.
-	ef := (MLDendrogram with: #e) merge: (MLDendrogram with: #f) at: 3.
+	ab := (AIDendrogram with: #a) merge: (AIDendrogram with: #b) at: 1.
+	cd := (AIDendrogram with: #c) merge: (AIDendrogram with: #d) at: 2.
+	ef := (AIDendrogram with: #e) merge: (AIDendrogram with: #f) at: 3.
 	abcd := ab merge: cd at: 4.
-	efg := ef merge: (MLDendrogram with: #g) at: 5.
+	efg := ef merge: (AIDendrogram with: #g) at: 5.
 	dendrogram := abcd merge: efg at: 7	"#(((a 1 b) 4 (c 2 d)) 7 ((e 3 f) 5 g))"
 ]
 

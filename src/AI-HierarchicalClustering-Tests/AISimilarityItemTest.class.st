@@ -10,11 +10,11 @@ Class {
 { #category : #'As yet unclassified' }
 AISimilarityItemTest >> testDistance [
 	| a b c elements engine clusters |
-	a := MLVectorItem with: #a and: #(1 0).
-	b := MLVectorItem with: #b and: #(0 1).
-	c := MLVectorItem with: #c and: #(0 7).
+	a := AIVectorItem with: #a and: #(1 0).
+	b := AIVectorItem with: #b and: #(0 1).
+	c := AIVectorItem with: #c and: #(0 7).
 	elements := Array with: a with: b with: c.
-	engine := MLClusterEngine with: elements.
+	engine := AIClusterEngine with: elements.
 	engine hierarchicalClusteringUsing: #averageLinkage.
 	clusters := engine dendrogram breakInto: 2.
 	self assert: clusters size equals: 2.
