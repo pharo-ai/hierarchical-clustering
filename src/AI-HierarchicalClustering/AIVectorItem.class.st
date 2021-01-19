@@ -21,7 +21,7 @@ AIVectorItem class >> with: anElement and: aVector [
 { #category : #'instance creation' }
 AIVectorItem class >> with: anElement andAll: aCollection [
 	
-	^(self on: (MLArrayVector withAll: aCollection))
+	^(self on: (AIArrayVector withAll: aCollection))
 		item: anElement;
 		yourself
 ]

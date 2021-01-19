@@ -26,7 +26,7 @@ AIFeatureCollection >> chroniaHausdorffDistance: aFeatureCollection [
 	Limitations of the implementation see FeatureCollection>>hausdorffMinima:."
 	
 	| distance |
-	distance := MLAccumulator squaredSum.
+	distance := AIAccumulator squaredSum.
 	distance enumerate: (self hausdorffMinima: aFeatureCollection).
 	distance enumerate: (aFeatureCollection hausdorffMinima: self).
 	^distance value
@@ -44,7 +44,7 @@ AIFeatureCollection >> hausdorffDistance: aFeatureCollection [
 	Limitations of the implementation see FeatureCollection>>hausdorffMinima:."
 	
 	| distance |
-	distance := MLAccumulator maximum.
+	distance := AIAccumulator maximum.
 	distance enumerate: (self hausdorffMinima: aFeatureCollection).
 	distance enumerate: (aFeatureCollection hausdorffMinima: self).
 	^distance value
