@@ -39,6 +39,13 @@ AIVectorItem >> dist: anItem [
 	^self vector dist: anItem vector
 ]
 
+{ #category : #'as yet unclassified' }
+AIVectorItem >> initializeDistanceSquare: anAIDistanceSquare from: aCollection [ 
+	" Initialize anAIDistanceSquare based in the recever's element for aCollection items "
+
+	anAIDistanceSquare initializeFromVectorItems: aCollection
+]
+
 { #category : #accessing }
 AIVectorItem >> item [
 	

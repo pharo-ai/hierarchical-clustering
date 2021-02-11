@@ -14,6 +14,13 @@ Class {
 	#category : #'AI-HierarchicalClustering-Core'
 }
 
+{ #category : #accessing }
+AIClusteringData class >> linkageFunctions [
+	" Answer a <Collection> of the receiver's available linkage functions selectors "
+	
+	^ self organization listAtCategoryNamed: #'linkage functions'
+]
+
 { #category : #'instance creation' }
 AIClusteringData class >> onDistanceSquare: distanceSquare [
 	
@@ -64,7 +71,9 @@ AIClusteringData >> completeLinkage [
 
 { #category : #accessing }
 AIClusteringData >> dendrogram [
-	self assert: indices size = 1.
+	" Answer an <AIDendrogramNode> representing the root node of the receiver's dendrogram "
+
+	self assert: indices size equals: 1.
 	^ clusters at: indices anyOne
 ]
 
@@ -92,8 +101,7 @@ AIClusteringData >> initialize: distanceMatrix [
 	partialColumns := distanceMatrix copyClusteringData
 		collect: [:each | AIClusteringVector withAll: each].
 	value := foundA0 := foundB0 := nil.
-	clusters := distanceMatrix items
-		collect: [:item | AIDendrogram with: item].
+	clusters := distanceMatrix collectDendrogramItems.
 	indices := (1 to: partialColumns size) asArray.
 	1
 		to: partialColumns size

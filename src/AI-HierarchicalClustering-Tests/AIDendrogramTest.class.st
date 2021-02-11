@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'dendrogram'
 	],
-	#category : #'AI-HierarchicalClustering-Tests'
+	#category : #'AI-HierarchicalClustering-Tests-Core'
 }
 
 { #category : #running }

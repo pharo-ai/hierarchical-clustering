@@ -4,7 +4,7 @@ Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is dist
 Class {
 	#name : #AISimilarityItemTest,
 	#superclass : #TestCase,
-	#category : #'AI-HierarchicalClustering-Tests'
+	#category : #'AI-HierarchicalClustering-Tests-Core'
 }
 
 { #category : #'As yet unclassified' }

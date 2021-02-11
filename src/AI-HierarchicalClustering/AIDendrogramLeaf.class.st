@@ -56,6 +56,12 @@ AIDendrogramLeaf >> isLeaf [
 	^ true
 ]
 
+{ #category : #'as yet unclassified' }
+AIDendrogramLeaf >> keys [
+
+	^ self element keys
+]
+
 { #category : #enumerating }
 AIDendrogramLeaf >> leavesDo: aBlock [
 	

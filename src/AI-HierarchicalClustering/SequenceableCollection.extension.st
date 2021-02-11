@@ -20,6 +20,13 @@ SequenceableCollection >> copyRemoveAtIndex: index [
 ]
 
 { #category : #'*AI-HierarchicalClustering' }
+SequenceableCollection >> initializeDistanceSquareFor: anAIDistanceSquare [
+	" Initialize anAIDistanceSquare matrix using the receiver's contents "
+
+	self anyOne initializeDistanceSquare: anAIDistanceSquare from: self
+]
+
+{ #category : #'*AI-HierarchicalClustering' }
 SequenceableCollection >> reverseSort: aSortBlock [
 	"-- yet another selector for #sortReverse: --"
 	"-- not deprecated, since both writings are reasonable --"

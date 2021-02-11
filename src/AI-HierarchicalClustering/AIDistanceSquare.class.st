@@ -12,28 +12,22 @@ Class {
 	#category : #'AI-HierarchicalClustering-Math'
 }
 
-{ #category : #constants }
-AIDistanceSquare class >> defaultDistanceBlock [
-	
-	^[:a :b | a dist: b]
-]
-
 { #category : #'instance creation' }
-AIDistanceSquare class >> from1D: aCollection [
-	" Answer a new instance of the receiver with partial matrix from oneDimensionCollection. Assume distances already calculated in oneDimensionCollection "
-	
-	^ self basicNew
+AIDistanceSquare class >> on1D: aCollection [
+	" Answer a new distance square matrix for aCollection of the receiver configured with a default distance "
+
+	^ (self new: aCollection size)
 		initializeFrom1D: aCollection;
-		yourself.
-
+		yourself
 ]
 
 { #category : #'instance creation' }
-AIDistanceSquare class >> on: items [
-	
-	^self
-		on: items
-		using: self defaultDistanceBlock
+AIDistanceSquare class >> on: aCollection [
+	" Answer a new distance square matrix for aCollection of the receiver configured with a default distance "
+
+	^ (self new: aCollection size)
+		initializeFrom: aCollection;
+		yourself
 ]
 
 { #category : #'instance creation' }
@@ -46,10 +40,11 @@ AIDistanceSquare class >> on: vectorA and: vectorB using: distanceBlock [
 ]
 
 { #category : #'instance creation' }
-AIDistanceSquare class >> on: items using: distanceBlock [
-	
-	^(self new: items size)
-		initialize: items using: distanceBlock;
+AIDistanceSquare class >> on: aCollection using: distanceBlock [
+	" Answer a new distance square matrix on aCollection items and with distanceBlock to obtain the distance between element vectors "
+
+	^ (self on: aCollection)
+		distanceBlock: distanceBlock
 		yourself
 ]
 
@@ -74,9 +69,21 @@ AIDistanceSquare >> checkInvariant [
 ]
 
 { #category : #private }
+AIDistanceSquare >> collectDendrogramItems [
+	
+	^ items asArrayOfRows collect: [ : item | AIDendrogram with: item ]
+]
+
+{ #category : #private }
 AIDistanceSquare >> copyClusteringData [
 	
 	^partialColumns collect: [:each | each copy]
+]
+
+{ #category : #constants }
+AIDistanceSquare >> defaultDistanceBlock [
+	
+	^[:a :b | a dist: b]
 ]
 
 { #category : #accessing }
@@ -87,8 +94,10 @@ AIDistanceSquare >> dendrogram [
 
 { #category : #accessing }
 AIDistanceSquare >> distanceBlock [
-	
-	^distanceBlock
+	" Answer a <BlockClosure> with the default behavior for calculating distance between receiver's elements "
+
+	^ distanceBlock
+		ifNil: [ distanceBlock := self defaultDistanceBlock ]
 ]
 
 { #category : #accessing }
@@ -114,24 +123,8 @@ AIDistanceSquare >> initialize: vectorA and: vectorB using: aDistanceBlock [
 ]
 
 { #category : #'initialize-release' }
-AIDistanceSquare >> initialize: someItems using: aDistanceBlock [
-	
-	items := someItems.
-	distanceBlock := aDistanceBlock.
-	partialColumns
-		doWithIndex:
-			[:vector :column | 
-			vector
-				putWithIndex:
-					[:row | 
-					distanceBlock
-						value: (items at: column)
-						value: (items at: row)]]
-]
-
-{ #category : #'initialize-release' }
 AIDistanceSquare >> initializeFrom1D: aCollection [
-	" Private - Assume aCollection to be 1D collection. Read items from it and set the receiver's lower triangular items ."
+	" Private - Assume aCollection to be 1D (flat) collection. Read items from it and set the receiver's lower triangular matrix "
 	
 	| dimension colSize |
 	colSize := aCollection size.
@@ -147,8 +140,65 @@ AIDistanceSquare >> initializeFrom1D: aCollection [
 				at: index
 				put: (self newVectorOfSize: index itemsFrom: aCollection dimensions: dimension) ]
 
+]
+
+{ #category : #'initialize-release' }
+AIDistanceSquare >> initializeFrom: anObject [
+	" Private - anObject should know how to initialize for the receiver's lower triangular items ."
+
+	anObject initializeDistanceSquareFor: self
 
 
+
+]
+
+{ #category : #'initialize-release' }
+AIDistanceSquare >> initializeFromDataFrame: aDataFrame [
+	" Private - Read items from aCollection and set the receiver's lower triangular items applying the distance formula between vectors in the data frame."
+
+	items := aDataFrame.
+	partialColumns doWithIndex: [ :vector :column | 
+		vector putWithIndex: [ : row |
+			self distanceBlock
+					value: ((aDataFrame at: column) values) asVector
+					value: ((aDataFrame at: row) values) asVector ] ]
+
+
+]
+
+{ #category : #'initialize-release' }
+AIDistanceSquare >> initializeFromNumbers: aCollection [
+	" Private - Assume aCollection to be 1D (flat) collection. Read items from it and set the receiver's lower triangular matrix "
+	
+	items := aCollection.
+	partialColumns doWithIndex: [ :vector :column | 
+		vector putWithIndex: [ :row | 
+			self distanceBlock
+				value: (items at: column)
+				value: (items at: row) ] ]
+
+]
+
+{ #category : #'initialize-release' }
+AIDistanceSquare >> initializeFromPoints: someItems [ 
+	
+	items := someItems.
+	partialColumns doWithIndex: [ :vector :column | 
+		vector putWithIndex: [ :row | 
+			self distanceBlock
+				value: (items at: column)
+				value: (items at: row) ] ]
+]
+
+{ #category : #'as yet unclassified' }
+AIDistanceSquare >> initializeFromVectorItems: aCollection [ 
+
+	items := aCollection.
+	partialColumns doWithIndex: [:vector :column | 
+		vector putWithIndex: [ :row | 
+					self distanceBlock
+						value: (items at: column)
+						value: (items at: row)]]
 ]
 
 { #category : #accessing }
