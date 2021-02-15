@@ -22,11 +22,11 @@ AIDistanceSquare class >> on1D: aCollection [
 ]
 
 { #category : #'instance creation' }
-AIDistanceSquare class >> on: aCollection [
-	" Answer a new distance square matrix for aCollection of the receiver configured with a default distance "
+AIDistanceSquare class >> on: anObject [
+	" Answer a new distance square matrix for anObject of the receiver configured with a default distance "
 
-	^ (self new: aCollection size)
-		initializeFrom: aCollection;
+	^ (self new: anObject size)
+		initializeFrom: anObject;
 		yourself
 ]
 

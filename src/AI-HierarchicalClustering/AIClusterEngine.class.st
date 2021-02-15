@@ -19,10 +19,17 @@ AIClusterEngine class >> numbers: aCollection [
 ]
 
 { #category : #'instance creation' }
-AIClusterEngine class >> with: aCollection [
-	" Answer a new instance of the receiver wrapping aCollection as the receiver's distance matrix "
+AIClusterEngine class >> on1D: anObject [
+	" Answer a new instance of the receiver wrapping anObject as the receiver's distance matrix "
 
-	^ self withDistanceMatrix: (AIDistanceSquare on: aCollection)
+	^ self withDistanceMatrix: (AIDistanceSquare on1D: anObject)
+]
+
+{ #category : #'instance creation' }
+AIClusterEngine class >> with: anObject [
+	" Answer a new instance of the receiver wrapping anObject as the receiver's distance matrix "
+
+	^ self withDistanceMatrix: (AIDistanceSquare on: anObject)
 ]
 
 { #category : #'instance creation' }

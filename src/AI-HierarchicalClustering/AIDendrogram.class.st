@@ -23,7 +23,7 @@ AIDendrogram class >> exampleAvgLinkageFromNumbers [
 AIDendrogram class >> exampleAvgLinkageFromNumbersInDataFrame [
 	<example>
 	
-	self exampleFromNumbersWithLinkage: #averageLinkage 
+	self exampleFromNumbersInDataFrameWithLinkage: #averageLinkage 
 
 ]
 
@@ -115,7 +115,7 @@ AIDendrogram class >> exampleWardsFromPoints [
 AIDendrogram class >> sampleDataFrame [
 	" Answer a <DataFrame> of samples for examples "
 
-	^ DataFrame readFromCsv: '"State","Murder","Assault","UrbanPop","Rape"
+	^ DataFrame readFromCsvWithRowNames: '"State","Murder","Assault","UrbanPop","Rape"
 Alabama,13.2,236,58,21.2
 Alaska,10,263,48,44.5
 Arizona,8.1,294,80,31
