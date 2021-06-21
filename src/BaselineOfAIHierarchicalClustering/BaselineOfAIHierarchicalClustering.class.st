@@ -21,7 +21,7 @@ BaselineOfAIHierarchicalClustering >> baseline: spec [
 				with: [ spec repository: 'github://pharo-ai/linear-algebra/src' ].
 
 			spec 
-				package: 'AI-HierarchicalClustering'	 		with: [ spec requires: #('CollectionExtensions' 'AILinearAlgebra') ];
+				package: 'AI-HierarchicalClustering'	 		with: [ spec requires: #('CollectionExtensions' 'AILinearAlgebra' 'DataFrame') ];
 				package: 'AI-HierarchicalClustering-Tests' 	with: [ spec requires: #('AI-HierarchicalClustering') ].
 			spec 
 				group: 'Core' 						with: #('AI-HierarchicalClustering');
