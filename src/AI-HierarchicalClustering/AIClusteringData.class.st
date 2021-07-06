@@ -73,7 +73,6 @@ AIClusteringData >> completeLinkage [
 AIClusteringData >> dendrogram [
 	" Answer an <AIDendrogramNode> representing the root node of the receiver's dendrogram "
 
-	self assert: indices size equals: 1.
 	^ clusters at: indices anyOne
 ]
 
