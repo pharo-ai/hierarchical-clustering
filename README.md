@@ -1,4 +1,4 @@
-# Description
+# Hierarchical Clustering
 
 [![Build status](https://github.com/pharo-ai/hierarchical-clustering/workflows/CI/badge.svg)](https://github.com/pharo-ai/hierarchical-clustering/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/pharo-ai/hierarchical-clustering/badge.svg?branch=master)](https://coveralls.io/github/pharo-ai/hierarchical-clustering?branch=master)
@@ -6,7 +6,7 @@
 
 Hierarchical Clustering algorithms for Pharo
 
-# Installation
+## Installation
 
 ```smalltalk
 Metacello new
