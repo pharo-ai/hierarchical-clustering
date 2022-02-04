@@ -120,10 +120,10 @@ AIClusterEngineTest >> testDendrogram [
 { #category : #test }
 AIClusterEngineTest >> testDistanceMatrix [
 
-	| input clusty |
-	input := 	#(3 11 2 15 1 12).
-	clusty := AIClusterEngine new distanceMatrix: (AIDistanceSquare on: input).
-	self assert: (clusty distanceMatrix isKindOf: AIDistanceSquare)
+    | input clusty |
+    input := #( 3 11 2 15 1 12 ).
+    clusty := AIClusterEngine new distanceMatrix: (AIDistanceSquare on: input).
+    self assert: clusty distanceMatrix equals: (AIDistanceSquare on: input)
 ]
 
 { #category : #test }
