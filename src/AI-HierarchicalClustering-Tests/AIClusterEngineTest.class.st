@@ -8,38 +8,6 @@ Class {
 }
 
 { #category : #testing }
-AIClusterEngineTest >> testCentroid [
-	| input clusty clusters |
-	input := #(#(1 2 3 5) #(11 12 15) #(21 22 23 25) #(31 32 35) #(41 42 43 45 47)).
-	clusty := AIClusterEngine with: input flatten shuffle.
-	clusty hierarchicalClusteringUsing: #centroid.
-	clusters := clusty dendrogram breakInto: 5.
-	self assert: clusters size equals: 5.
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 1) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 2) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 3) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 4) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 5) ]).
-	^ clusters
-]
-
-{ #category : #testing }
-AIClusterEngineTest >> testClustering [
-	| input clusty clusters |
-	input := #(#(1 2 3 5) #(11 12 15) #(21 22 23 25) #(31 32 35) #(41 42 43 45 47)).
-	clusty := AIClusterEngine with: input flatten shuffle.
-	clusty hierarchicalClusteringUsing: #averageLinkage.
-	clusters := clusty dendrogram breakInto: 5.
-	self assert: clusters size equals: 5.
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 1) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 2) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 3) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 4) ]).
-	self assert: (clusters anySatisfy: [ :each | each equalsTo: (input at: 5) ]).
-	^ clusters
-]
-
-{ #category : #testing }
 AIClusterEngineTest >> testClustering300Elements [
 	
 	| input clusty clusters |
@@ -50,6 +18,75 @@ AIClusterEngineTest >> testClustering300Elements [
 		do: [:n | clusty averageLinkage].
 	clusters := clusty dendrogram breakInto: 10.
 	^clusters
+]
+
+{ #category : #testing }
+AIClusterEngineTest >> testClusteringWithAverageLinkage [
+
+	| input clusty clusters |
+	input := #( #( 1 2 3 5 ) #( 11 12 15 ) #( 21 22 23 25 )
+	            #( 31 32 35 ) #( 41 42 43 45 47 ) ).
+	clusty := AIClusterEngine with: input flatten shuffle.
+	clusty hierarchicalClusteringUsing: #averageLinkage.
+	clusters := clusty dendrogram breakInto: 5.
+	self assert: clusters size equals: 5.
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 1) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 2) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 3) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 4) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 5) ]).
+	^ clusters
+]
+
+{ #category : #testing }
+AIClusterEngineTest >> testClusteringWithCentroid [
+
+	| input clusty clusters |
+	input := #( #( 1 2 3 5 ) #( 11 12 15 ) #( 21 22 23 25 )
+	            #( 31 32 35 ) #( 41 42 43 45 47 ) ).
+	clusty := AIClusterEngine with: input flatten shuffle.
+	clusty hierarchicalClusteringUsing: #centroid.
+	clusters := clusty dendrogram breakInto: 5.
+	self assert: clusters size equals: 5.
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 1) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 2) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 3) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 4) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 5) ]).
+	^ clusters
+]
+
+{ #category : #testing }
+AIClusterEngineTest >> testClusteringWithCompleteLinkage [
+
+	| input clusty clusters |
+	input := #( #( 1 2 3 5 ) #( 11 12 15 ) #( 21 22 23 25 )
+	            #( 31 32 35 ) #( 41 42 43 45 47 ) ).
+	clusty := AIClusterEngine with: input flatten shuffle.
+	clusty hierarchicalClusteringUsing: #completeLinkage.
+	clusters := clusty dendrogram breakInto: 5.
+	self assert: clusters size equals: 5.
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 1) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 2) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 3) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 4) ]).
+	self assert:
+		(clusters anySatisfy: [ :each | each equalsTo: (input at: 5) ]).
+	^ clusters
 ]
 
 { #category : #test }
