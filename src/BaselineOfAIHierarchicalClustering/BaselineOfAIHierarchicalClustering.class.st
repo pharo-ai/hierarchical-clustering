@@ -6,25 +6,31 @@ Class {
 
 { #category : #baselines }
 BaselineOfAIHierarchicalClustering >> baseline: spec [
-  <baseline>
-	spec
-		for: #(common)
-		do: [ 
-			spec
-				baseline: 'CollectionExtensions'
-				with: [ spec repository: 'github://pharo-contributions/CollectionExtensions:v1.x.x/src' ];
 
-				baseline: 'DataFrame'
-				with: [ spec repository: 'github://PolyMathOrg/DataFrame/src' ];
+	<baseline>
+	spec for: #( common ) do: [ 
+		"External dependencies"
+		spec
+			baseline: 'CollectionExtensions' with: [ spec repository: 'github://pharo-contributions/CollectionExtensions:v1.x.x/src' ].
+		spec
+			baseline: 'AIExternalDependencies'
+			with: [ spec
+				loads: #('DataFrameGroup');
+				repository: 'github://pharo-ai/external-dependencies' ].
+			
+		"pharo-ai dependencies"
+		spec
+			baseline: 'AILinearAlgebra' with: [ spec repository: 'github://pharo-ai/linear-algebra/src' ].
 
-				baseline: 'AILinearAlgebra'
-				with: [ spec repository: 'github://pharo-ai/linear-algebra/src' ].
-
-			spec 
-				package: 'AI-HierarchicalClustering'	 		with: [ spec requires: #('CollectionExtensions' 'AILinearAlgebra' 'DataFrame') ];
-				package: 'AI-HierarchicalClustering-Tests' 	with: [ spec requires: #('AI-HierarchicalClustering') ].
-			spec 
-				group: 'Core' 						with: #('AI-HierarchicalClustering');
-				group: 'Tests' 						with: #('AI-HierarchicalClustering' 'AI-HierarchicalClustering-Tests');
-				group: 'default' 					with: #('Core' 'Tests') ]
+		"Packages"
+		spec
+			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AILinearAlgebra' 'DataFrameGroup' ) ];
+			package: 'AI-HierarchicalClustering-Tests'
+			with: [ spec requires: #( 'AI-HierarchicalClustering' ) ].
+			
+		"Groups"
+		spec
+			group: 'Core' with: #( 'AI-HierarchicalClustering' );
+			group: 'Tests' with: #( 'AI-HierarchicalClustering' 'AI-HierarchicalClustering-Tests' );
+			group: 'default' with: #( 'Core' 'Tests' ) ]
 ]
