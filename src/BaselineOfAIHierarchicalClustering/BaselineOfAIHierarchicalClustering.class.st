@@ -17,7 +17,7 @@ BaselineOfAIHierarchicalClustering >> baseline: spec [
 			with: [ spec
 				loads: #('DataFrameGroup');
 				repository: 'github://pharo-ai/external-dependencies' ].
-			
+		
 		"pharo-ai dependencies"
 		spec
 			baseline: 'AILinearAlgebra' with: [ spec repository: 'github://pharo-ai/linear-algebra/src' ].
