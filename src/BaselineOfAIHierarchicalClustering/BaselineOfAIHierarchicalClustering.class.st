@@ -24,7 +24,7 @@ BaselineOfAIHierarchicalClustering >> baseline: spec [
 
 		"Packages"
 		spec
-			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AILinearAlgebra' 'DataFrameGroup' ) ];
+			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AILinearAlgebra' 'AIExternalDependencies' ) ];
 			package: 'AI-HierarchicalClustering-Tests'
 			with: [ spec requires: #( 'AI-HierarchicalClustering' ) ].
 			
