@@ -20,11 +20,11 @@ BaselineOfAIHierarchicalClustering >> baseline: spec [
 		
 		"pharo-ai dependencies"
 		spec
-			baseline: 'AILinearAlgebra' with: [ spec repository: 'github://pharo-ai/moose-linear-algebra/src' ].
+			baseline: 'AIMooseLinearAlgebra' with: [ spec repository: 'github://pharo-ai/moose-linear-algebra/src' ].
 
 		"Packages"
 		spec
-			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AILinearAlgebra' 'AIExternalDependencies' ) ];
+			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AIMooseLinearAlgebra' 'AIExternalDependencies' ) ];
 			package: 'AI-HierarchicalClustering-Tests'
 			with: [ spec requires: #( 'AI-HierarchicalClustering' ) ].
 			
