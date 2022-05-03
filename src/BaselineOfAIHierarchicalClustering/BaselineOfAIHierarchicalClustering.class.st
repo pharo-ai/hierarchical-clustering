@@ -13,10 +13,8 @@ BaselineOfAIHierarchicalClustering >> baseline: spec [
 		spec
 			baseline: 'CollectionExtensions' with: [ spec repository: 'github://pharo-contributions/CollectionExtensions:v1.x.x/src' ].
 		spec
-			baseline: 'AIExternalDependencies'
-			with: [ spec
-				loads: #('DataFrameGroup');
-				repository: 'github://pharo-ai/external-dependencies' ].
+    			baseline: 'AIExternalDataFrame' with: [ spec repository: 'github://pharo-ai/external-dependencies' ].
+
 		
 		"pharo-ai dependencies"
 		spec
@@ -24,7 +22,7 @@ BaselineOfAIHierarchicalClustering >> baseline: spec [
 
 		"Packages"
 		spec
-			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AIMooseLinearAlgebra' 'AIExternalDependencies' ) ];
+			package: 'AI-HierarchicalClustering' with: [ spec requires: #( 'CollectionExtensions' 'AIMooseLinearAlgebra' 'AIExternalDataFrame' ) ];
 			package: 'AI-HierarchicalClustering-Tests'
 			with: [ spec requires: #( 'AI-HierarchicalClustering' ) ].
 			
