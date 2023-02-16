@@ -34,16 +34,17 @@ AIClusteringVector >> min [
 
 { #category : #accessing }
 AIClusteringVector >> unsetAt: index [
-	super at: index put: AIUnlimited positive.
+
+	super at: index put: Float infinity.
 	found = index ifTrue: [ found := nil ]
 ]
 
 { #category : #private }
 AIClusteringVector >> update [
-	min := AIUnlimited positive.
-	self
-		doWithIndex: [ :each :ind | 
-			each < min
-				ifTrue: [ min := each.
-					found := ind ] ]
+
+	min := Float infinity.
+	self doWithIndex: [ :each :ind |
+		each < min ifTrue: [
+			min := each.
+			found := ind ] ]
 ]
