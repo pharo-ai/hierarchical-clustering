@@ -81,7 +81,7 @@ AIClusteringData >> findMinimum [
 	"This method is written such that it uses primitives only."
 	
 	| columnVector |
-	value := AIUnlimited positive.
+	value := Float infinity.
 	2
 		to: indices size
 		do:
