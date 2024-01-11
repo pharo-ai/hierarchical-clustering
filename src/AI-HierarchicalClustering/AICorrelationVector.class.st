@@ -50,7 +50,7 @@ AICorrelationVector >> defaultElement [
 AICorrelationVector >> min [
 	
 	^(self reject: #isNil)
-		inject: AIUnlimited positive
+		inject: Float infinity
 		into: [:each :min | min min: each]
 ]
 
